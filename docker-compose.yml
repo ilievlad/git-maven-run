@@ -1,0 +1,25 @@
+version: '2'
+services:
+  git:
+    environment:
+      - GIT_REPO=https://github.com/despick/git-maven-run.git
+    build: 
+      context: ./git
+    image: despick/git:1.0.0
+    container_name: git-container
+    volumes:
+      - gitapp:/root/gitapp
+    working_dir: /root/gitapp
+    command: git pull
+  maven:
+    image: maven:3.3.3-jdk-8
+    container_name: maven-container
+    volumes:
+      - m2:/root/.m2
+    volumes_from:
+      - git
+    working_dir: /root/gitapp
+    command: mvn test
+volumes:
+  gitapp: {}
+  m2: {}
