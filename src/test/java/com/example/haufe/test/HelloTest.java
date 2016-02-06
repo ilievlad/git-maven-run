@@ -35,4 +35,10 @@ public class HelloTest extends JerseyTest {
         assertEquals("Hello World!", hello);
     }
 
+    @Test
+    public void test2() {
+        final String hello = target("hello").request().get(String.class);
+        assertNotNull(hello);
+    }
+
 }
