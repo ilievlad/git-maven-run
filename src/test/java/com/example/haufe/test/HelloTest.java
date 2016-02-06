@@ -24,15 +24,29 @@ public class HelloTest extends JerseyTest {
         }
     }
 
+    @Path("hello2")
+    public static class Hello2Resource {
+        @GET
+        public String getHello() {
+            return "Hello2 World!";
+        }
+    }
+
     @Override
     protected Application configure() {
-        return new ResourceConfig(HelloResource.class);
+        return new ResourceConfig(HelloResource.class, Hello2Resource.class);
     }
 
     @Test
     public void test() {
         final String hello = target("hello").request().get(String.class);
         assertEquals("Hello World!", hello);
+    }
+
+    @Test
+    public void test2() {
+        final String hello = target("hello2").request().get(String.class);
+        assertEquals("Hello2 World!", hello);
     }
 
 }
