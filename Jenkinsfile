@@ -8,18 +8,8 @@ pipeline {
     }
     stage('Test') {
       steps {
-        parallel(
-          "Chrome": {
-            sh 'mvn test'
-            junit '**/target/surefire-reports/*'
-            
-          },
-          "Firefox": {
-            sh 'mvn test'
-            junit '**/target/surefire-reports/*'
-            
-          }
-        )
+        sh 'mvn test'
+        junit '**/target/surefire-reports/*'
       }
     }
     stage('Deploy') {
