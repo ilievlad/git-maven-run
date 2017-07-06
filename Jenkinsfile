@@ -12,10 +12,5 @@ pipeline {
         junit '**/target/surefire-reports/TEST-com.example.haufe.test.HelloTest.xml'
       }
     }
-    stage('Deploy') {
-      steps {
-        sh 'scp'
-      }
-    }
   }
 }
