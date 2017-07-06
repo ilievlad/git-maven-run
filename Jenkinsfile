@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh 'mvn package'
+        sh 'mvn validate'
       }
     }
     stage('Test') {
@@ -11,12 +11,12 @@ pipeline {
         parallel(
           "Chrome": {
             sh 'mvn test'
-            junit '**/test-results.xml'
+            junit '**/target/surefire-reports/*'
             
           },
           "Firefox": {
             sh 'mvn test'
-            junit '**/test-results.xml'
+            junit '**/target/surefire-reports/*'
             
           }
         )
