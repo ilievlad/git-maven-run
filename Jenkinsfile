@@ -9,7 +9,7 @@ pipeline {
     stage('Test') {
       steps {
         sh 'mvn test'
-        junit '**/target/surefire-reports/*'
+        junit '**/target/surefire-reports/TEST-com.example.haufe.test.HelloTest.xml'
       }
     }
     stage('Deploy') {
